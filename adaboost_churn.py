@@ -24,12 +24,18 @@ def predict_customer_churn(features):
 st.title("Customer Churn Prediction")
 
 # get user Input
-SeniorCitizen = st.selectbox("Senior Citizen", [0,1])
-Tenure = st.slider("Tenure", min_value=None, 0,72,1)
+for feature in feature_names:
+    if feature in numeric_features:
+        if feature == 'SeniorCitizen':
+            input_data[feature] = st.selectbox(f"{{feature.replace('_', ' ')}}", [0, 1])
+        elif feature == 'tenure':
+            input_data[feature] = st.slider(f"{{feature.replace('_', ' ')}}", 0, 72, 1)
+        elif feature == 'MonthlyCharges':
+            input_data[feature] = st.number_input(f"{{feature.replace('_', ' ')}}", min_value=0.0, max_value=120.0, value=50.0, step=0.1)
+        elif feature == 'TotalCharges':
+            input_data[feature] = st.number_input(f"{{feature.replace('_', ' ')}}", min_value=0.0, max_value=8684.8, value=1000.0, step=0.1)
 
-
-
-Input_data=pd.DataFrame([[SeniorCitizen,Tenure]],columns=columns)
+Input_data=pd.DataFrame([[SeniorCitizen,tenure,MonthlyCharges,TotalCharges]],columns=columns)
 if st.button("Predict_Customer_Churn):
   prediction=predict_customer_churn(Input_data)
   if prediction[0]==1:
