@@ -3,7 +3,7 @@ import pandas as pd
 import pickle 
 import joblib
 adaboost_best_model = joblib.load('adaboost_best_model.pkl')
-columns=['SeniorCitizen', 'tenure', 'MonthlyCharges', 'TotalCharges', 'Churn',
+columns=['SeniorCitizen', 'tenure', 'MonthlyCharges', 'TotalCharges',
        'gender_Male', 'Partner_Yes', 'Dependents_Yes', 'PhoneService_Yes',
        'MultipleLines_No phone service', 'MultipleLines_Yes',
        'InternetService_Fiber optic', 'InternetService_No',
